@@ -1,8 +1,8 @@
 # syntax=docker.io/docker/dockerfile:1.4
 # layers for caching and versioning
-FROM cartesi/toolchain:0.14.0 as toolchain
-FROM cartesi/server-manager:0.7.0 as server-manager
-FROM cartesi/rollups-hardhat:0.9.1 as rollups-hardhat
+FROM cartesi/toolchain:0.15.0 as toolchain
+FROM cartesi/server-manager:0.8.2 as server-manager
+FROM cartesi/rollups-hardhat:1.0.0 as rollups-hardhat
 
 
 # stage to download dependencies
@@ -146,4 +146,4 @@ FROM busybox as machine-stage
 
 WORKDIR /var/opt/cartesi/machine-snapshots
 COPY --from=server-stage /var/opt/cartesi/machine-snapshots .
-CMD ["xxd", "-c", "256", "-p", "hash"]
+CMD ["xxd", "-c", "256", "-p", "0_0/hash"]
